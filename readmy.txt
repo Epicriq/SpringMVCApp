@@ -1,0 +1,32 @@
+    ----------------
+    -- Spring MVC --
+
+    Урок 14: Spring MVC. Теория.
+
+    Урок 15: Spring MVC. Первое приложение.
+        https://www.youtube.com/watch?v=BgE5DoIN6Bs
+    Урок 16: Spring MVC. Конфигурация с помощью Java кода.
+        https://www.youtube.com/watch?v=A4iCQYoI4Cs
+    Урок 17: Контроллеры. Аннотация @Controller.
+        https://www.youtube.com/watch?v=JHTqKQgrVKE
+    Урок 18: Протокол HTTP. Методы GET и POST.
+        https://www.youtube.com/watch?v=5fzX70ODuoI
+    Урок 19: Параметры GET запроса. Аннотация @RequestParam.
+        https://www.youtube.com/watch?v=Nn-kRhn2znw
+    Урок 20: Модель. Передача данных от контроллера к представлению.
+        https://www.youtube.com/watch?v=S8QgGX8HA9k
+    Урок 21: CRUD, REST, Паттерн DAO (Data Access Object).
+        https://www.youtube.com/watch?v=D58pIymCew4
+    Урок 22: Аннотация @ModelAttribute. HTML Формы (Thymeleaf).
+        https://www.youtube.com/watch?v=w1FjeTZxQrQ
+    Урок 23: CRUD приложение. PATCH, DELETE запросы.
+        https://www.youtube.com/watch?v=JaVGIYxE23c
+    Урок 24: Валидация форм. Аннотация @Valid.
+        https://www.youtube.com/watch?v=96AVOLMnS8c
+
+
+    -----------------
+    -- Spring JDBC --
+
+    Урок 25: JDBC API. Базы данных.
+        https://www.youtube.com/watch?v=5LHCmvzugQM
