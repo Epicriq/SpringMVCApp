@@ -11,7 +11,7 @@ import ru.asuslov.springcourse.models.Person;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/people")
+@RequestMapping(value = "/people", produces="text/html;charset=UTF-8")
 public class PeopleController {
 
     private PersonDAO personDAO;

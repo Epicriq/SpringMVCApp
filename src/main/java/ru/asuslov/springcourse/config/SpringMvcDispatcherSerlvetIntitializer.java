@@ -23,12 +23,14 @@ public class SpringMvcDispatcherSerlvetIntitializer extends AbstractAnnotationCo
 
     @Override
     public void onStartup(ServletContext aServletContext) throws ServletException {
+        aServletContext.setRequestCharacterEncoding("UTF-8");
         super.onStartup(aServletContext);
         registerHiddenFieldFilter(aServletContext);
     }
 
     private void registerHiddenFieldFilter(ServletContext aContext) {
-        aContext.addFilter("hiddenHttpMethodFilter",
-                new HiddenHttpMethodFilter()).addMappingForUrlPatterns(null ,true, "/*");
+        HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
+        aContext.addFilter("hiddenHttpMethodFilter", hiddenHttpMethodFilter)
+                .addMappingForUrlPatterns(null ,true, "/*");
     }
 }
