@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import ru.asuslov.springcourse.dao.PersonDAO;
 import ru.asuslov.springcourse.models.Person;
+import ru.asuslov.springcourse.utils.PersonValidator;
 
 import javax.validation.Valid;
 
@@ -15,6 +16,9 @@ import javax.validation.Valid;
 public class PeopleController {
 
     private PersonDAO personDAO;
+
+    @Autowired
+    private PersonValidator personValidator;
 
     @Autowired
     public PeopleController(PersonDAO personDAO) {
@@ -28,7 +32,7 @@ public class PeopleController {
     }
 
     @GetMapping("/{id}")
-    public String showPerson(@PathVariable("id") int id, Model model){
+    public String showPerson(@PathVariable("id") Integer id, Model model){
         model.addAttribute("person", personDAO.show(id));
         return "people/show";
     }
@@ -39,17 +43,18 @@ public class PeopleController {
     }
 
     @PostMapping()
-    public String createPerson(@ModelAttribute("person") @Valid Person person,
-                               BindingResult bindingResult){
+    public String createPerson(@ModelAttribute("person") @Valid Person person, BindingResult bindingResult){
+        personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors())
             return "people/new";
-
-        personDAO.save(person);
-        return "redirect:/people";
+        else {
+            personDAO.save(person);
+            return "redirect:/people";
+        }
     }
 
     @GetMapping("/{id}/edit")
-    public String editPerson(Model model, @PathVariable("id") int id){
+    public String editPerson(Model model, @PathVariable("id") Integer id){
         model.addAttribute("person", personDAO.show(id));
         return "people/edit";
     }
@@ -57,11 +62,13 @@ public class PeopleController {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("person") @Valid Person person,
                          BindingResult bindingResult,
-                         @PathVariable("id") int id){
+                         @PathVariable("id") Integer id){
         if (bindingResult.hasErrors())
             return "people/edit";
-        personDAO.update(id, person);
-        return "redirect:/people";
+        else {
+            personDAO.update(id, person);
+            return "redirect:/people";
+        }
     }
 
     @DeleteMapping("/{id}")
