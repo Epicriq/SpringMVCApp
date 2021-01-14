@@ -1,5 +1,10 @@
 package ru.asuslov.springcourse.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.Period;
+import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -16,9 +21,9 @@ public class Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotNull
-    @Column(name = "age")
-    private Integer age;
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @Column(name = "birthdate")
+    private Date birthDate;
 
     @NotEmpty(message = EMPTY_MES_ERROR)
     @Size(min=2,message = "Значение должно состоять минимум из 2-х символов")
@@ -35,6 +40,9 @@ public class Person {
 
     @Transient
     private String genderName;
+
+    @Transient
+    private Integer age;
 
     public Person(){}
 
@@ -63,8 +71,19 @@ public class Person {
         this.name = name;
     }
 
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthdate) {
+        this.birthDate = birthdate;
+    }
+
     public Integer getAge() {
-        return age;
+        //return this.age;
+
+        long difference_In_Time = new Date().getTime() - birthDate.getTime();
+        return (int)(difference_In_Time / (1000l * 60 * 60 * 24 * 365));
     }
 
     public void setAge(Integer age) {
@@ -95,7 +114,5 @@ public class Person {
         }
     }
 
-    public void setGenderName(String genderName) {
-
-    }
+    public void setGenderName(String genderName) { }
 }
